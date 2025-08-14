@@ -1,0 +1,96 @@
+function plugin_links_activate() {
+    global $wp_filesystem;
+
+    if (!file_exists(PLUGIN_LINKS_LOG_PATH)) {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        WP_Filesystem();
+        $wp_filesystem->put_contents(PLUGIN_LINKS_LOG_PATH, '');
+    }
+}
+
+// Deactivation function
+function plugin_links_deactivate() {
+    global $wp_filesystem;
+
+    if (file_exists(PLUGIN_LINKS_LOG_PATH)) {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        WP_Filesystem();
+        $wp_filesystem->delete(PLUGIN_LINKS_LOG_PATH);
+    }
+}
+
+// Debug Log
+function plugin_links_log($message) {
+    if (defined('WP_DEBUG') && WP_DEBUG) {
+        global $wp_filesystem;
+        
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        WP_Filesystem();
+
+        $timestamp = date('Y-m-d H:i:s');
+        $log_message = "[{$timestamp}] {$message}\n";
+
+        $wp_filesystem->append_contents(PLUGIN_LINKS_LOG_PATH, $log_message);
+    }
+}
+
+// Example usage within the plugin
+function plugin_links_example_function() {
+    // Example plugin logic here
+
+    // Debug log example
+    plugin_links_log('Example function executed');
+}
+
+// Admin Menu
+add_action('admin_menu', 'plugin_links_admin_menu');
+
+function plugin_links_admin_menu() {
+    add_menu_page(
+        'Plugin Links',
+        'Plugin Links',
+        'manage_options',
+        'plugin_links',
+        'plugin_links_admin_page',
+        'dashicons-admin-plugins',
+        6
+    );
+}
+
+// Admin Page
+function plugin_links_admin_page() {
+    ?>
+    <div class="wrap">
+        <h1>Plugin Links</h1>
+        <p>Manage and share plugin zip files.</p>
+        <!-- Admin page content goes here -->
+    </div>
+    <?php
+}
+
+// Utility functions
+function plugin_links_generate_zip_link($plugin_slug) {
+    // Logic to generate zip file link for the plugin
+    // This is a placeholder function
+
+    $success = true; // Simulate the success outcome of the function
+
+    if ($success) {
+        plugin_links_log("Zip link generated successfully for plugin: {$plugin_slug}");
+    } else {
+        plugin_links_log("Failed to generate zip link for plugin: {$plugin_slug}");
+    }
+}
+
+function plugin_links_share_zip_link($zip_link) {
+    // Logic to share the zip file link
+    // This is a placeholder function
+    
+    $success = true; // Simulate the success outcome of the function
+
+    if ($success) {
+        plugin_links_log("Zip link shared successfully: {$zip_link}");
+    } else {
+        plugin_links_log("Failed to share zip link: {$zip_link}");
+    }
+}
