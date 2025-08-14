@@ -1,2 +1,1 @@
-# plugin-links
-Create shareable links of installed WordPress Plugins
+git clone https://github.com/username/repository-name.git
