@@ -1,0 +1,76 @@
+/* Base styles for the WordPress Plugin Links plugin */
+
+/* Basic structure styles */
+body {
+    line-height: 1.5;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Container styles */
+.plugin-links-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Header styles */
+.plugin-links-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Button styles */
+.button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background-color: #0073aa;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #005177;
+    cursor: pointer;
+}
+
+/* Link styles */
+.plugin-link {
+    display: block;
+    margin: 10px 0;
+    color: #0073aa;
+    text-decoration: none;
+    font-family: 'Arial', sans-serif;
+}
+
+.plugin-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .plugin-links-container {
+        padding: 15px;
+    }
+
+    .plugin-links-header {
+        font-size: 20px;
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
