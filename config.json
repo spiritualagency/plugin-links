@@ -1,0 +1,65 @@
+{
+  "pluginName": "Plugin Links",
+  "version": "1.0.0",
+  "description": "A WordPress plugin to easily generate and share zip file links for installed plugins.",
+  "author": "Actual Author Name",
+  "license": "GPL-2.0-or-later",
+  "requires": {
+    "wordpress": "6.0",
+    "php": "7.2"
+  },
+  "architecture": {
+    "modular": true,
+    "core": ["php"],
+    "logic": ["js"],
+    "styles": ["css"],
+    "config": ["json"]
+  },
+  "supportedFileTypes": [
+    ".php",
+    ".js",
+    ".css",
+    ".json",
+    ".pot",
+    ".mo",
+    ".log",
+    ".md",
+    ".txt",
+    ".xml"
+  ],
+  "endpoints": [
+    {
+      "name": "generateZip",
+      "url": "/wp-json/plugin-links/v1/generate-zip",
+      "method": "POST",
+      "description": "Endpoint to generate zip files for plugins."
+    },
+    {
+      "name": "getShareableLink",
+      "url": "/wp-json/plugin-links/v1/get-link",
+      "method": "GET",
+      "description": "Endpoint to retrieve a shareable link for a generated zip file."
+    }
+  ],
+  "globalConstants": {
+    "ZIP_EXPIRATION": "7 days",
+    "MAX_PLUGINS": 5
+  },
+  "sharedLogic": [
+    "errorHandling.js",
+    "notifications.js"
+  ],
+  "dataSchemas": [
+    {
+      "name": "pluginDataSchema",
+      "type": "JSON",
+      "description": "Schema for plugin data structure utilized in zip creation."
+    }
+  ],
+  "docs": [
+    {
+      "title": "Plugin Links Documentation",
+      "url": "https://example.com/docs/plugin-links"
+    }
+  ]
+}
