@@ -1,0 +1,90 @@
+<plugin>
+  <name>Plugin Links</name>
+  <description>Generate and share zip file links for installed plugins to enhance management and distribution capabilities.</description>
+  <version>1.0.0</version>
+  <author>WordPress Plugin Developer</author>
+  <license>GPLv2 or later</license>
+  <update_url>https://example.com/plugin-update</update_url>
+  <compatibility>WordPress 5.8+</compatibility>
+  <dependencies>
+    <dependency>
+      <name>ZipArchive</name>
+      <type>PHP Extension</type>
+    </dependency>
+  </dependencies>
+  <resources>
+    <resource>
+      <type>php</type>
+      <path>plugin-core.php</path>
+    </resource>
+    <resource>
+      <type>php</type>
+      <path>admininterface.php</path>
+    </resource>
+    <resource>
+      <type>php</type>
+      <path>zipcreationbot.php</path>
+    </resource>
+    <resource>
+      <type>php</type>
+      <path>pluginmain.php</path>
+    </resource>
+    <resource>
+      <type>js</type>
+      <path>interface.js</path>
+    </resource>
+    <resource>
+      <type>js</type>
+      <path>userinterfaceenhancements.js</path>
+    </resource>
+    <resource>
+      <type>css</type>
+      <path>styles.css</path>
+    </resource>
+    <resource>
+      <type>json</type>
+      <path>config.json</path>
+    </resource>
+    <resource>
+      <type>language</type>
+      <path>languages.pot</path>
+    </resource>
+    <resource>
+      <type>language</type>
+      <path>languages.mo</path>
+    </resource>
+    <resource>
+      <type>log</type>
+      <path>debug.log</path>
+    </resource>
+    <resource>
+      <type>xml</type>
+      <path>metadata.xml</path>
+    </resource>
+  </resources>
+  <config>
+    <setting>
+      <name>zip_location</name>
+      <value>wp-content/uploads/plugin-links/</value>
+    </setting>
+    <setting>
+      <name>link_expiration_days</name>
+      <value>7</value>
+    </setting>
+    <setting>
+      <name>max_zip_size</name>
+      <value>50MB</value>
+    </setting>
+  </config>
+  <metadata>
+    <documentation>
+      <url>https://example.com/docs/plugin-links</url>
+    </documentation>
+    <changelog>
+      <url>https://example.com/changelog/plugin-links</url>
+    </changelog>
+    <support>
+      <url>https://example.com/support/plugin-links</url>
+    </support>
+  </metadata>
+</plugin>
