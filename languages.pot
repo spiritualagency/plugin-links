@@ -1,0 +1,58 @@
+function plugin_links_load_textdomain() {
+    load_plugin_textdomain('plugin-links-generator', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+}
+
+add_action('plugins_loaded', 'plugin_links_load_textdomain');
+
+function plugin_links_generate_pot() {
+    $pot_file_path = PLUGIN_LINKS_DIR . 'languages/plugin-links-generator.pot';
+
+    if (!is_dir(PLUGIN_LINKS_DIR . 'languages/')) {
+        mkdir(PLUGIN_LINKS_DIR . 'languages/', 0755, true);
+    }
+
+    $source_files = glob(PLUGIN_LINKS_DIR . '**/*.php');
+    $pot_content = '';
+
+    foreach ($source_files as $file) {
+        $file_content = file_get_contents($file);
+        preg_match_all('/__\([\'\"](.+?)[\'\"]\)/', $file_content, $matches);
+        foreach ($matches[1] as $string) {
+            $pot_content .= 'msgid "' . $string . "\"\nmsgstr \"\"\n\n";
+        }
+    }
+
+    if (is_writable(dirname($pot_file_path))) {
+        file_put_contents($pot_file_path, $pot_content);
+    } else {
+        // Handle error gracefully if write permission failed
+        error_log('Failed to write the .pot file due to insufficient permissions.');
+    }
+}
+
+function plugin_links_activation_hook() {
+    plugin_links_generate_pot();
+}
+
+register_activation_hook(__FILE__, 'plugin_links_activation_hook');
+
+function plugin_links_admin_menu() {
+    add_menu_page(
+        __('Plugin Links', 'plugin-links-generator'),
+        __('Plugin Links', 'plugin-links-generator'),
+        'manage_options',
+        'plugin-links',
+        'plugin_links_admin_page',
+        'dashicons-admin-plugins'
+    );
+}
+
+add_action('admin_menu', 'plugin_links_admin_menu');
+
+function plugin_links_admin_page() {
+    echo '<div class="wrap">';
+    echo '<h1>' . __('Plugin Links Generator', 'plugin-links-generator') . '</h1>';
+    echo '<p>' . __('Generate and share zip file links for installed plugins.', 'plugin-links-generator') . '</p>';
+    // Additional admin page content goes here
+    echo '</div>';
+}
